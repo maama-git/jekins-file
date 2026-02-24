@@ -12,7 +12,7 @@ pipeline
                 steps{
                     echo "Avital & Rachely"
                     echo"{$NAME}"
-                    echo  build number:$(env.BUILD_NUM)
+                    echo  "build number:${env.BUILD_NUMBER}"
                 }
 
           }  
