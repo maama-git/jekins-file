@@ -9,8 +9,18 @@ options{
 }
 
     stages {
-        stage("stage number one") {
+     
+        stage("conect to GitHub") {
             steps {
+                      withCredentials([
+                      usernamePassword(credentialsID:'GitHubUser',usernameVariable:'USER',passwordVariable:'PASS'),
+                     ]){
+                      bat'''
+                        echo Deploying as %USER% %PASS%
+                            '''
+               }
+            }
+             }
                 sleep time:15,unit:'SECONDS'
                 echo "Avital & Rachely"
                 echo "Hello ${NAME}"
