@@ -1,21 +1,29 @@
-pipeline{
-
+pipeline
+{
+ environment
+ {
+ NAME="naama"
+ }
     agent any
-        stages{
-            stage("stage number one"){
+        stages
+        {
+            stage("stage number one")
+                 {
                 steps{
                     echo "Avital & Rachely"
+                    echo"{$NAME}"
                 }
 
-            }
+          }  
 
-        }
+       
 
-  stage{
-        stage("stage number two"){
- steps{
-   echo "hi evryone"
-      }
-                             }
-       }
+
+        stage("stage number two")
+         {
+             steps{
+                  echo "hi evryone"
+                   }
+                            
+         }
 }
