@@ -1,28 +1,28 @@
-pipeline
-{
+pipeline {
     agent any
 
     environment {
         NAME = "naama"
     }
-options{
-  timeout(time:1,unit:'SECONDS' )
-}
+
+    options {
+        // הגדלתי ל-2 דקות כדי שה-sleep לא יכשיל את הריצה
+        timeout(time: 2, unit: 'MINUTES')
+    }
 
     stages {
-     
-        stage("conect to GitHub") {
+        stage("Connect to GitHub") {
             steps {
-                      withCredentials([
-                      usernamePassword(credentialsID:'GitHubUser',usernameVariable:'USER',passwordVariable:'PASS'),
-                     ]){
-                      bat'''
-                        echo Deploying as %USER% %PASS%
-                            '''
-               }
-            }
-             }
-                sleep time:15,unit:'SECONDS'
+                // שימוש בהרשאות
+                withCredentials([
+                    usernamePassword(credentialsId: 'UserGit', usernameVariable: 'USER', passwordVariable: 'PASS')
+                ]) {
+                    // פקודת bat צריכה להיות במבנה תקין
+                    bat "echo Deploying as %USER% %PASS%"
+                }
+                
+                // כל אלו חייבים להיות בתוך ה-steps של ה-stage
+                sleep time: 15, unit: 'SECONDS'
                 echo "Avital & Rachely"
                 echo "Hello ${NAME}"
                 echo "build number: ${env.BUILD_NUMBER}"
@@ -34,6 +34,6 @@ options{
                 echo "hi everyone"
             }
         }
- }
-
+    }
+}
 }
