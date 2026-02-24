@@ -1,4 +1,5 @@
-pipeline {
+pipeline
+{
     agent any
 
     environment {
@@ -19,7 +20,7 @@ options{
                         echo Deploying as %USER% %PASS%
                             '''
                }
-            
+            }
              }
                 sleep time:15,unit:'SECONDS'
                 echo "Avital & Rachely"
@@ -33,5 +34,6 @@ options{
                 echo "hi everyone"
             }
         }
-    }
+ }
 
+}
