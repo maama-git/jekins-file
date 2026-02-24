@@ -1,45 +1,38 @@
 pipeline {
     agent any
+
     environment {
-        APP_ENV = "staging"
+        NAME = "naama"
+    }
+options{
+  timeout(time:1,unit:'SECONDS' )
+}
 
-    }
-    options{
-        timeout(time: 100, unit: 'SECONDS')
-    }
     stages {
-        stage('connect to github'){
-        steps{
-            withCredentials([
-    		  usernamePassword(credentialsId: 'GitHubUser', usernameVariable: 'USER', passwordVariable: 'PASS'),
-    		]) {
-    		  bat '''
-    			echo  Deploying as %USER% %PASS%
-    		  '''
-    		}
-        }
-        }
-        stage('Hello') {
+     
+        stage("conect to GitHub") {
             steps {
-                sleep time: 15, unit: 'SECONDS'
+                      withCredentials([
+                      usernamePassword(credentialsID:'GitHubUser',usernameVariable:'USER',passwordVariable:'PASS'),
+                     ]){
+                      bat'''
+                        echo Deploying as %USER% %PASS%
+                            '''
+               }
+            
+             }
+                sleep time:15,unit:'SECONDS'
+                echo "Avital & Rachely"
+                echo "Hello ${NAME}"
                 echo "build number: ${env.BUILD_NUMBER}"
-                echo 'Hello World'
-                echo "${APP_ENV}"
             }
         }
-        stage('learn credentials') {
-            steps{
-             echo 'learn credentials'
-              echo "${APP_ENV}"
-            }
 
-        }
-
-        stage('build') {
+        stage("stage number two") {
             steps {
-                echo 'The second stage'
-                echo 'The second steps'
+                echo "hi everyone"
             }
         }
     }
 }
+
