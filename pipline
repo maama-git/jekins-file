@@ -6,14 +6,14 @@ pipeline {
     }
 
     options {
-        // הגדלתי ל-2 דקות כדי שה-sleep לא יכשיל את הריצה
+        buildDiscar
         timeout(time: 2, unit: 'MINUTES')
     }
 
     stages {
         stage("Connect to GitHub") {
             steps {
-                // שימוש בהרשאות
+                
                 withCredentials([
                     usernamePassword(credentialsId: 'UserGit', usernameVariable: 'USER', passwordVariable: 'PASS')
                 ]) {
