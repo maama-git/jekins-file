@@ -1,11 +1,18 @@
 pipeline
 {
+agent any
  environment
  {
  NAME="naama"
  }
-    agent any
-        stages
+    
+    options{
+timeout(time:1,unit:'MINUTES')}
+
+
+
+stages
+
         {
             stage("stage number one")
                  {
