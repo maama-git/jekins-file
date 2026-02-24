@@ -5,12 +5,13 @@ pipeline {
         NAME = "naama"
     }
 options{
-  timeout(sleep time:5,unit:'SECONDS' )
+  timeout(time:1,unit:'SECONDS' )
 }
 
     stages {
         stage("stage number one") {
             steps {
+                sleep time:15,unit:'SECONDS'
                 echo "Avital & Rachely"
                 echo "Hello ${NAME}"
                 echo "build number: ${env.BUILD_NUMBER}"
