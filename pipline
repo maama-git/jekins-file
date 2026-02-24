@@ -1,37 +1,26 @@
-pipeline
-{
-agent any
- environment
- {
- NAME="naama"
- }
-    
-    options{
-timeout(time:1,unit:'MINUTES')}
+pipeline {
+    agent any
 
-
-
-stages
-
-        {
-            stage("stage number one")
-                 {
-                steps{
-                    echo "Avital & Rachely"
-                    echo"{$NAME}"
-                    echo  "build number:${env.BUILD_NUMBER}"
-                }
-
-          }  
-
-       
-
-
-        stage("stage number two")
-         {
-             steps{
-                  echo "hi evryone"
-                   }
-                            
-         }
+    environment {
+        NAME = "naama"
+    }
+options{
+  timeout(sleep time:5,unit:'SECONDS' )
 }
+
+    stages {
+        stage("stage number one") {
+            steps {
+                echo "Avital & Rachely"
+                echo "Hello ${NAME}"
+                echo "build number: ${env.BUILD_NUMBER}"
+            }
+        }
+
+        stage("stage number two") {
+            steps {
+                echo "hi everyone"
+            }
+        }
+    }
+} 
