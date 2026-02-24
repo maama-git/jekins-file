@@ -6,7 +6,7 @@ pipeline {
     }
 
     options {
-        buildDiscar
+        buildDiscarder(logRotator(numToKeepStr:'5'))
         timeout(time: 2, unit: 'MINUTES')
     }
 
@@ -17,8 +17,7 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId: 'UserGit', usernameVariable: 'USER', passwordVariable: 'PASS')
                 ]) {
-                    // פקודת bat צריכה להיות במבנה תקין
-                    bat "echo Deploying as %USER% %PASS%"
+                                bat "echo Deploying as %USER% %PASS%"
                 }
                 
                 // כל אלו חייבים להיות בתוך ה-steps של ה-stage
